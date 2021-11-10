@@ -1,6 +1,7 @@
 import Homepage from "@/components/Homepage";
 import ShoppingCart from "@/components/ShoppingCart";
 import Favorites from "@/components/Favorites";
+import Product from "@/components/Product";
 
 
 export const routes = [
@@ -15,6 +16,10 @@ export const routes = [
     {
         path : '/favorites',
         component: Favorites
+    },
+    {
+        path : '/product/:id',
+        component: Product
     }
 ]
 

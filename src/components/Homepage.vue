@@ -3,20 +3,21 @@
   <div v-for="product in products">
     <div class="bg-white text-center border border-2 border-gray-700 rounded-2xl overflow-hidden my-2 shadow-sm hover:shadow-lg">
       <div class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block absolute right-1.5 top-1.5 cursor-pointer text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg @click="addFavorites(product)" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block absolute right-1.5 top-1.5 cursor-pointer text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
         <img class="h-64 w-52" :src="product.image" alt="Pantolon">
       </div>
-      <div>{{ product.name }}</div>
+      <router-link :to="'/product/' + product.id"><div>{{ product.name }}</div></router-link>
       <div class="font-black">{{ product.price }} TL</div>
-      <div class="bg-white border-t-2 border-gray-700 cursor-pointer hover:bg-purple-500 hover:text-white" @click="addShoppingCart">Sepete Ekle</div>
+      <div class="bg-white border-t-2 border-gray-700 cursor-pointer hover:bg-purple-500 hover:text-white" @click="addShoppingCart(product)">Sepete Ekle</div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import {store} from "@/store/store";
 export default {
   name: 'Homepage',
   data() {
@@ -82,8 +83,19 @@ export default {
     }
   },
   methods : {
-    addShoppingCart() {
+    addShoppingCart(product) {
 
+      if (store.state.products.includes(product)) {
+        product.quantity += 1
+      }else{
+        product.quantity = 1
+      }
+      store.state.products.push(product)
+      store.state.shoppingCartValue+=1
+      console.log(store.state.products)
+    },
+    addFavorites(product) {
+      store.state.favoriteProducts.push(product)
     }
   }
 }

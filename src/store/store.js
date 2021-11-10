@@ -5,7 +5,10 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state : {
-        quantity : 0,
-        totalPrice : 0
+
+        totalPrice : 0,
+        products : [],
+        favoriteProducts : [],
+        shoppingCartValue : 0
     }
 })
