@@ -22,80 +22,84 @@ export default {
   name: 'Homepage',
   data() {
     return {
-      favorites : [],
-      shoppingCart : [],
-      products : [
+      favorites: [],
+      shoppingCart: [],
+      products: [
         {
-          id : 1231,
-          name : 'Kot Pantolon',
-          price : 150.99,
-          image : 'https://cdn.modaselvim.com/duz-paca-kot-pantolon-304ih413-acik-kot-488790-71-B.jpg'
+          id: 1231,
+          name: 'Kot Pantolon',
+          price: 150.99,
+          image: 'https://cdn.modaselvim.com/duz-paca-kot-pantolon-304ih413-acik-kot-488790-71-B.jpg'
         },
         {
-          id : 1232,
-          name : 'Yeşil Elbise',
-          price : 250.99,
-          image : 'https://cdn.dsmcdn.com/mnresize/500/-/ty51/product/media/images/20210109/3/49852957/82491703/1/1_org_zoom.jpg'
+          id: 1232,
+          name: 'Yeşil Elbise',
+          price: 250.99,
+          image: 'https://cdn.dsmcdn.com/mnresize/500/-/ty51/product/media/images/20210109/3/49852957/82491703/1/1_org_zoom.jpg'
         },
         {
-          id : 1233,
-          name : 'Siyah Elbise',
-          price : 462.99,
-          image : 'https://cdn.dsmcdn.com/mnresize/500/-/ty61/product/media/images/20210126/15/57376241/61700965/1/1_org_zoom.jpg'
+          id: 1233,
+          name: 'Siyah Elbise',
+          price: 462.99,
+          image: 'https://cdn.dsmcdn.com/mnresize/500/-/ty61/product/media/images/20210126/15/57376241/61700965/1/1_org_zoom.jpg'
         },
         {
-          id : 1234,
-          name : 'Siyah Elbise',
-          price : 375.99,
-          image : 'https://stn-nocturne.mncdn.com/Content/media/ProductImg/original/n21y-2409-0002-v-yaka-midi-boy-elbise-637498631952562353.jpg'
+          id: 1234,
+          name: 'Siyah Elbise',
+          price: 375.99,
+          image: 'https://stn-nocturne.mncdn.com/Content/media/ProductImg/original/n21y-2409-0002-v-yaka-midi-boy-elbise-637498631952562353.jpg'
         },
         {
-          id : 1235,
-          name : 'Siyah Beyaz Elbise',
-          price : 480.99,
-          image : 'https://cdn.sementa.com/dik-yaka-puantiyeli-uzun-elbise-siyah-elbise-sementa-63201-13-K.jpg'
+          id: 1235,
+          name: 'Siyah Beyaz Elbise',
+          price: 480.99,
+          image: 'https://cdn.sementa.com/dik-yaka-puantiyeli-uzun-elbise-siyah-elbise-sementa-63201-13-K.jpg'
         },
         {
-          id : 1236,
-          name : 'Gri Siyah Elbise',
-          price : 279.99,
-          image : 'https://st1.myideasoft.com/idea/dj/82/myassets/products/505/ashley-drapeli-elbise-ekru-1-2.jpg?revision=1618496625'
+          id: 1236,
+          name: 'Gri Siyah Elbise',
+          price: 279.99,
+          image: 'https://st1.myideasoft.com/idea/dj/82/myassets/products/505/ashley-drapeli-elbise-ekru-1-2.jpg?revision=1618496625'
         },
         {
-          id : 1237,
-          name : 'Çiçek Desenli Elbise',
-          price : 599.99,
-          image : 'https://romancdn.sysrun.net//Content/ProductImage/Original/637196969983978206-8681822107034_1.jpg'
+          id: 1237,
+          name: 'Çiçek Desenli Elbise',
+          price: 599.99,
+          image: 'https://romancdn.sysrun.net//Content/ProductImage/Original/637196969983978206-8681822107034_1.jpg'
         },
         {
-          id : 1238,
-          name : 'Bordo Elbise',
-          price : 350.99,
-          image : 'https://cdn.olegcassini.com.tr/bordo-krep-tek-kollu-yirtmacli-abiye-elbise-koleksiyon-oleg-by-oleg-cassini-13927-64-B.jpg'
+          id: 1238,
+          name: 'Bordo Elbise',
+          price: 350.99,
+          image: 'https://cdn.olegcassini.com.tr/bordo-krep-tek-kollu-yirtmacli-abiye-elbise-koleksiyon-oleg-by-oleg-cassini-13927-64-B.jpg'
         },
         {
-          id : 1239,
-          name : 'Sarı Elbise',
-          price : 450.99,
-          image : 'https://st2.myideasoft.com/idea/dj/82/myassets/products/575/ines-anvelop-elbise-sari.jpg?revision=1618495201'
+          id: 1239,
+          name: 'Sarı Elbise',
+          price: 450.99,
+          image: 'https://st2.myideasoft.com/idea/dj/82/myassets/products/575/ines-anvelop-elbise-sari.jpg?revision=1618495201'
         }
       ]
     }
   },
-  methods : {
+  methods: {
     addShoppingCart(product) {
 
-      if (store.state.products.includes(product)) {
+      if (store.state.cart.includes(product)) {
         product.quantity += 1
-      }else{
+        store.state.shoppingCartValue += 1
+      } else {
         product.quantity = 1
+        store.state.cart.push(product)
+        store.state.shoppingCartValue += 1
       }
-      store.state.products.push(product)
-      store.state.shoppingCartValue+=1
-      console.log(store.state.products)
+      console.log(store.state.cart)
     },
     addFavorites(product) {
-      store.state.favoriteProducts.push(product)
+
+      if (store.state.favoriteProducts.includes(product) === false) {
+        store.state.favoriteProducts.push(product)
+      }
     }
   }
 }

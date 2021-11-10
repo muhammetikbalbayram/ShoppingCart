@@ -1,6 +1,6 @@
 <template>
   <div class="mt-12" v-if="$store.state.favoriteProducts.length === 0" >
-    <div class=" flex justify-between items-center mx-80 mb-4 border border-gray-700 rounded" >
+    <div class="text-center mx-80 mb-4 border border-gray-700 rounded" >
       Favorilerinizde Ürün Yoktur.
     </div>
   </div>
@@ -24,7 +24,8 @@ export default {
   name: "Favorites",
   methods : {
     removeProduct(product) {
-      store.state.favoriteProducts.delete(product)
+      var indexOfProduct = store.state.favoriteProducts.indexOf(product)
+      store.state.favoriteProducts.splice(indexOfProduct,1)
     }
   }
 }
