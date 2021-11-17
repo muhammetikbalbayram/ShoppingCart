@@ -9,5 +9,19 @@ export const store = new Vuex.Store({
         cart : [],
         favoriteProducts : [],
         shoppingCartValue : 0
+    },
+    getters : {
+
+    },
+    mutations : {
+        ADD_PRODUCT(state,product) {
+            state.cart.push(product)
+        },
+
+    },
+    actions : {
+        addProduct(context,product) {
+            context.commit('ADD_PRODUCT',product)
+        }
     }
 })

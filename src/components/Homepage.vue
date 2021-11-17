@@ -10,7 +10,7 @@
       </div>
       <router-link :to="'/product/' + product.id"><div>{{ product.name }}</div></router-link>
       <div class="font-black">{{ product.price }} TL</div>
-      <div class="bg-white border-t-2 border-gray-700 cursor-pointer hover:bg-purple-500 hover:text-white" @click="addShoppingCart(product)">Sepete Ekle</div>
+      <div class="bg-white border-t-2 border-gray-700 cursor-pointer hover:bg-purple-500 hover:text-white" @click="addProduct(product)">Sepete Ekle</div>
     </div>
   </div>
 </div>
@@ -18,6 +18,7 @@
 
 <script>
 import {store} from "@/store/store";
+import {mapActions} from 'vuex'
 export default {
   name: 'Homepage',
   data() {
@@ -83,18 +84,21 @@ export default {
     }
   },
   methods: {
-    addShoppingCart(product) {
+    ...mapActions([
+        'addProduct'
+    ]),
+    //addShoppingCart(product) {
 
-      if (store.state.cart.includes(product)) {
-        product.quantity += 1
-        store.state.shoppingCartValue += 1
-      } else {
-        product.quantity = 1
-        store.state.cart.push(product)
-        store.state.shoppingCartValue += 1
-      }
-      console.log(store.state.cart)
-    },
+      //if (store.state.cart.includes(product)) {
+        //product.quantity += 1
+        //store.state.shoppingCartValue += 1
+      //} else {
+        //product.quantity = 1
+        //store.state.cart.push(product)
+        //store.state.shoppingCartValue += 1
+      //}
+      //console.log(store.state.cart)
+    //},
     addFavorites(product) {
 
       if (store.state.favoriteProducts.includes(product) === false) {
