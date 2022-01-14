@@ -1,6 +1,6 @@
 <template>
 <div class="flex gap-24 flex-auto flex-wrap mx-32 mt-12">
-  <div v-for="product in $store.state.products" :key="product" >
+  <div v-for="(product,index) in $store.state.products" :key="index" >
     <div class="bg-white text-center border border-2 border-gray-700 rounded-2xl overflow-hidden my-2 shadow-sm hover:shadow-lg">
       <div class="relative">
         <svg @click="addFavorites(product)" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block absolute right-1.5 top-1.5 cursor-pointer text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

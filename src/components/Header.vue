@@ -10,6 +10,9 @@
           <div class="text-center p-2">
             <router-link to="/"><a class="text-lg">Home</a></router-link>
           </div>
+          <div class="text-center p-2">
+            <router-link to="/create"><a class="text-lg">Create Product</a></router-link>
+          </div>
           <div class="text-center flex border rounded-full bg-red-500 text-white p-2 hover:text-red-500 hover:bg-white">
             <router-link to="/favorites"><a class="text-lg">My Favorites</a></router-link>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
